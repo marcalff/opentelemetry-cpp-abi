@@ -35,7 +35,9 @@ grep -v "^#" src/ABI_CHECK_LIST | grep -v "^[[:space:]]*$" > bin/ABI_CHECK_LIST.
 for TEST in `cat bin/ABI_CHECK_LIST.tmp`
 do
 
+echo "=== Processing TEST ${TEST} ==="
 scripts/dump-abi.sh -c ${CXX} -n ${CXX_NAME} -t ${TEST}
+echo ""
 
 done
 

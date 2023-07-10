@@ -35,14 +35,20 @@ grep -v "^#" src/ABI_CHECK_LIST | grep -v "^[[:space:]]*$" > bin/ABI_CHECK_LIST.
 for TEST in `cat bin/ABI_CHECK_LIST.tmp`
 do
 
-echo "Checking compliance for test ${TEST}, compiler ${CXX_NAME}, version ${ABI_VERSION} ..."
+echo "=== Checking compliance for test ${TEST}, compiler ${CXX_NAME}, version ${ABI_VERSION} ==="
 
 export NEW_DUMP=bin/${TEST}-${CXX_NAME}-${ABI_VERSION}.dump
 
 for OLD_DUMP in `ls -1 bin/${TEST}-${CXX_NAME}-*.dump`
 do
-  abi-compliance-checker -l ${TEST} --old ${OLD_DUMP} --new ${NEW_DUMP}
+  if [[ ${OLD_DUMP} != ${NEW_DUMP} ]]; then
+    echo "--- Compliance for test ${TEST}, old ${OLD_DUMP}, new ${NEW_DUMP} ---"
+    abi-compliance-checker -l ${TEST} --old ${OLD_DUMP} --new ${NEW_DUMP}
+    echo ""
+  fi
 done
+
+echo ""
 
 done
 

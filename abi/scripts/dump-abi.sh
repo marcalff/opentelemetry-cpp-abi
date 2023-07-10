@@ -36,8 +36,9 @@ grep -v "^#" src/${TEST}.ver | grep -v "^[[:space:]]*$" > bin/${TEST}.tmp
 
 for ABI_VERSION in `cat bin/${TEST}.tmp`
 do
-
+echo "--- Processing ABI_VERSION ${ABI_VERSION} ---"
 scripts/dump-abi-ver.sh -c ${CXX} -n ${CXX_NAME} -t ${TEST} -v ${ABI_VERSION}
+echo ""
 
 done
 
