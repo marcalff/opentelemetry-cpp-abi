@@ -1,0 +1,5 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
+# Metrics was GA in opentelemetry-cpp v1.8.0
+MIN_VERSION_NUMBER=10800

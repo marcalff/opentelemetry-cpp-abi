@@ -32,15 +32,64 @@ while getopts ${optstring} arg; do
   esac
 done
 
-grep -v "^#" src/${TEST}.ver | grep -v "^[[:space:]]*$" > bin/${TEST}.tmp
+COMMENT_REGEXP="^#.*$"
+EMPTY_REGEXP="^[[:space:]]*$"
+MIN_VERSION_NUMBER_REGEXP="^MIN_VERSION_NUMBER=[0-9]*$"
+MAX_VERSION_NUMBER_REGEXP="^MAX_VERSION_NUMBER=[0-9]*$"
 
-for ABI_VERSION in `cat bin/${TEST}.tmp`
-do
-echo "--- Processing ABI_VERSION ${ABI_VERSION} ---"
-scripts/dump-abi-ver.sh -c ${CXX} -n ${CXX_NAME} -t ${TEST} -v ${ABI_VERSION}
-echo ""
+# If it exists, scan the src/{TEST}.ver file for version ranges.
 
-done
+MIN_VERSION_NUMBER=0
+MAX_VERSION_NUMBER=0
 
-rm bin/${TEST}.tmp
+if [[ -f src/${TEST}.ver ]]; then
+
+  echo "Scanning file src/${TEST}.ver"
+
+  while IFS= read -r line; do
+    # printf '%s\n' "$line"
+    if [[ ${line} =~ ${MIN_VERSION_NUMBER_REGEXP} ]]; then
+      MIN_VERSION_NUMBER=`echo ${line} | cut -f 2 -d"="`
+      echo "Found MIN_VERSION_NUMBER=${MIN_VERSION_NUMBER}"
+      continue;
+    fi
+    if [[ ${line} =~ ${MAX_VERSION_NUMBER_REGEXP} ]]; then
+      MAX_VERSION_NUMBER=`echo ${line} | cut -f 2 -d"="`
+      echo "Found MAX_VERSION_NUMBER=${MIN_VERSION_NUMBER}"
+      continue;
+    fi
+
+  done < src/${TEST}.ver
+fi
+
+echo "Version range ${MIN_VERSION_NUMBER} - ${MAX_VERSION_NUMBER}"
+
+# Scan the src/ABI_VERSIONS file
+
+while IFS= read -r line; do
+  # printf '%s\n' "$line"
+  if [[ ${line} =~ ${COMMENT_REGEXP} ]]; then
+    continue;
+  fi
+  if [[ ${line} =~ ${EMPTY_REGEXP} ]]; then
+    continue;
+  fi
+  ABI_VERSION=`echo ${line} | cut -f 1 -d" "`
+  ABI_VERSION_NUMBER=`echo ${line} | cut -f 2 -d" "`
+
+  # Only process relevant versions
+
+  if [[ ${MIN_VERSION_NUMBER} != 0 && ${MIN_VERSION_NUMBER} > ${ABI_VERSION_NUMBER} ]]; then
+    echo "--- Excluding ABI_VERSION ${ABI_VERSION} ---"
+    continue;
+  fi
+
+  if [[ ${MAX_VERSION_NUMBER} != 0 && ${MAX_VERSION_NUMBER} < ${ABI_VERSION_NUMBER} ]]; then
+    echo "--- Excluding ABI_VERSION ${ABI_VERSION} ---"
+    continue;
+  fi
+
+  echo "--- Processing ABI_VERSION ${ABI_VERSION} ---"
+  scripts/dump-abi-ver.sh -c ${CXX} -n ${CXX_NAME} -t ${TEST} -v ${ABI_VERSION}
+done < src/ABI_VERSIONS
 
