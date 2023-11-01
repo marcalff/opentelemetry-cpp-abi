@@ -37,7 +37,7 @@ do
 
 echo "=== Checking compliance for test ${TEST}, compiler ${CXX_NAME}, version ${ABI_VERSION} ==="
 
-export NEW_DUMP=bin/${TEST}-${CXX_NAME}-${ABI_VERSION}.dump
+export NEW_DUMP=bin/${TEST}-${CXX_NAME}-${ABI_VERSION}-nostd.dump
 
 for OLD_DUMP in `ls -1 bin/${TEST}-${CXX_NAME}-*.dump`
 do

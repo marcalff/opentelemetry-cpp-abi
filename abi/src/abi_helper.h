@@ -4,7 +4,10 @@
 /*
   The calling script sets:
   #define API_CHECK_VERSION=MMmmpp
-  to help
+  to give some context.
+
+  Based on this context, this helper makes adjustments,
+  so that code for a given test can build in all versions.
 */
 
 #include "opentelemetry/version.h"

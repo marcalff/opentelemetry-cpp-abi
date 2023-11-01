@@ -53,3 +53,52 @@ cd abi
 
 Then inspect reports under `abi/compat_reports/`.
 
+## Adding new ABI tests
+
+An ABI test is a plain C++ file.
+
+The test is a compile time check, not a runtime check,
+so the test itself only needs to build: it will never be executed.
+
+Create a new test file, for example
+
+* `abi/src/abi_check_foo.cc`
+
+See file `abi/src/abi_check_TEMPLATE.cc` for instructions.
+
+If a test can only be executed against some versions,
+create a version file for the test:
+
+* `abi/src/abi_check_foo.ver`
+
+See file `abi/src/abi_check_TEMPLATE.ver` for instructions.
+
+Last, reference the new test,
+by adding a line in file:
+
+* `abi/src/ABI_CHECK_LIST`
+
+## Adding new version to test
+
+A version consist of:
+
+* A name
+* A version number
+* A directory under api
+
+First, add a new line in file:
+
+* `abi/src/ABI_VERSIONS`
+
+For versions corresponding to an opentelemetry release,
+use the release tag as a name, for example `v1.10.0`.
+
+For versions corresponding to a pull request,
+use the PR number, for example `pr1234`.
+
+Second, create a directory for the version to test,
+that contains all the version source code.
+
+```shell
+mkdir api/VERSION_NAME
+```
