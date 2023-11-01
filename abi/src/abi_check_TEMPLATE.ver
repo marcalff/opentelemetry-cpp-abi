@@ -1,0 +1,19 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
+# This file is optional.
+
+# To perform ABI tests after a given version, use
+# MIN_VERSION_NUMBER=MMmmpp
+
+# To perform ABI tests until a given version, use
+# MAX_VERSION_NUMBER=MMmmpp
+
+# Examples:
+
+# XXX was GA in opentelemetry-cpp v1.8.0
+MIN_VERSION_NUMBER=10800
+
+# XXX was removed in opentelemetry-cpp v1.23.45
+MAX_VERSION_NUMBER=12345
+

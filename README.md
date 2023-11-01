@@ -102,3 +102,31 @@ that contains all the version source code.
 ```shell
 mkdir api/VERSION_NAME
 ```
+
+### Adding a git submodule
+
+Clone opentelemetry-cpp and checkout the proper tag
+
+```shell
+git submodule add git@github.com:open-telemetry/opentelemetry-cpp.git api/v1.11.0/opentelemetry-cpp
+cd api/v1.11.0/opentelemetry-cpp
+git checkout v1.11.0
+```
+
+Then, add the submodule and commit.
+
+```shell
+git add api/v1.11.0/opentelemetry-cpp
+```
+
+## Staying up to date with main
+
+The `main` submodule does not keep track of changes in the opentelemetry-cpp
+repository.
+
+To update the main version, pull explicitly.
+
+```shell
+cd api/main/opentelemetry-cpp
+git pull origin main
+```

@@ -3,7 +3,6 @@
 
 #include "abi_helper.h"
 
-#include "opentelemetry/trace/canonical_code.h"
 #include "opentelemetry/trace/context.h"
 #include "opentelemetry/trace/default_span.h"
 #include "opentelemetry/trace/noop.h"
