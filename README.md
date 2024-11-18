@@ -37,6 +37,7 @@ CXX=/path/to/g++-12
 ```shell
 git submodule init
 git submodule sync
+git submodule update
 ```
 
 ```
