@@ -4,36 +4,61 @@
 #
 # List of versions to test.
 # Format is one version per line
-# - version name <space> version number in MMmmpp format
+# Fields:
+# - abi version name
+# - <space>
+# - release version name
+# - <space>
+# - version number in MMmmpp format
 #
 
-v1.0.0 10000
-v1.1.0 10100
-v1.2.0 10200
-v1.3.0 10300
-v1.4.0 10400
-v1.5.0 10500
-v1.6.0 10600
-v1.7.0 10700
-v1.8.0 10800
-v1.9.0 10900
-v1.10.0 11000
-v1.11.0 11100
-v1.12.0 11200
-v1.13.0 11300
-v1.14.0 11400
-v1.14.1 11401
-v1.14.2 11402
-v1.15.0 11500
-v1.16.0 11600
-v1.16.1 11601
-v1.17.0 11700
-v1.18.0 11800
-v1.19.0 11900
-v1.20.0 12000
-v1.21.0 12100
-v1.22.0 12200
-v1.23.0 12300
-v1.24.0 12400
-main 19999
+abiv1 v1.0.0 10000
+abiv1 v1.1.0 10100
+abiv1 v1.2.0 10200
+abiv1 v1.3.0 10300
+abiv1 v1.4.0 10400
+abiv1 v1.5.0 10500
+abiv1 v1.6.0 10600
+abiv1 v1.7.0 10700
+abiv1 v1.8.0 10800
+abiv1 v1.9.0 10900
+abiv1 v1.10.0 11000
+abiv1 v1.11.0 11100
+
+# ABI_VERSION_2 added in v1.12.0
+
+abiv1 v1.12.0 11200
+abiv2 v1.12.0 11200
+abiv1 v1.13.0 11300
+abiv2 v1.13.0 11300
+abiv1 v1.14.0 11400
+abiv2 v1.14.0 11400
+abiv1 v1.14.1 11401
+abiv2 v1.14.1 11401
+abiv1 v1.14.2 11402
+abiv2 v1.14.2 11402
+abiv1 v1.15.0 11500
+abiv2 v1.15.0 11500
+abiv1 v1.16.0 11600
+abiv2 v1.16.0 11600
+abiv1 v1.16.1 11601
+abiv2 v1.16.1 11601
+abiv1 v1.17.0 11700
+abiv2 v1.17.0 11700
+abiv1 v1.18.0 11800
+abiv2 v1.18.0 11800
+abiv1 v1.19.0 11900
+abiv2 v1.19.0 11900
+abiv1 v1.20.0 12000
+abiv2 v1.20.0 12000
+abiv1 v1.21.0 12100
+abiv2 v1.21.0 12100
+abiv1 v1.22.0 12200
+abiv2 v1.22.0 12200
+abiv1 v1.23.0 12300
+abiv2 v1.23.0 12300
+abiv1 v1.24.0 12400
+abiv2 v1.24.0 12400
+abiv1 main 19999
+abiv2 main 19999
 

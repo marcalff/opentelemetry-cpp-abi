@@ -13,14 +13,16 @@ function usage {
 }
 
 CXX_NAME="gcc12"
-ABI_VERSION="main"
+ABI_VERSION="abiv1"
+RELEASE_VERSION="main"
 
-optstring="n:v:"
+optstring="n:a:v:"
 
 while getopts ${optstring} arg; do
   case "${arg}" in
     n) CXX_NAME=${OPTARG};;
-    v) ABI_VERSION=${OPTARG};;
+    a) ABI_VERSION=${OPTARG};;
+    v) RELEASE_VERSION=${OPTARG};;
 
     ?)
       echo "Invalid option: -${OPTARG}."
@@ -35,11 +37,11 @@ grep -v "^#" src/ABI_CHECK_LIST | grep -v "^[[:space:]]*$" > bin/ABI_CHECK_LIST.
 for TEST in `cat bin/ABI_CHECK_LIST.tmp`
 do
 
-echo "=== Checking compliance for test ${TEST}, compiler ${CXX_NAME}, version ${ABI_VERSION} ==="
+echo "=== Checking compliance for test ${TEST}, compiler ${CXX_NAME}, abi ${ABI_VERSION}, version ${RELEASE_VERSION} ==="
 
-export NEW_DUMP=bin/${TEST}-${CXX_NAME}-${ABI_VERSION}-nostd.dump
+export NEW_DUMP=bin/${TEST}-${CXX_NAME}-${ABI_VERSION}-${RELEASE_VERSION}-nostd.dump
 
-for OLD_DUMP in `ls -1 bin/${TEST}-${CXX_NAME}-*.dump`
+for OLD_DUMP in `ls -1 bin/${TEST}-${CXX_NAME}-${ABI_VERSION}-*.dump`
 do
   if [[ ${OLD_DUMP} != ${NEW_DUMP} ]]; then
     echo "--- Compliance for test ${TEST}, old ${OLD_DUMP}, new ${NEW_DUMP} ---"

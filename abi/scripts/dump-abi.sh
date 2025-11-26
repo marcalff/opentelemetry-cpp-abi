@@ -75,21 +75,22 @@ while IFS= read -r line; do
     continue;
   fi
   ABI_VERSION=`echo ${line} | cut -f 1 -d" "`
-  ABI_VERSION_NUMBER=`echo ${line} | cut -f 2 -d" "`
+  RELEASE_VERSION=`echo ${line} | cut -f 2 -d" "`
+  RELEASE_VERSION_NUMBER=`echo ${line} | cut -f 3 -d" "`
 
   # Only process relevant versions
 
-  if [[ ${MIN_VERSION_NUMBER} != 0 && ${MIN_VERSION_NUMBER} > ${ABI_VERSION_NUMBER} ]]; then
-    echo "--- Excluding ABI_VERSION ${ABI_VERSION} ---"
+  if [[ ${MIN_VERSION_NUMBER} != 0 && ${MIN_VERSION_NUMBER} > ${RELEASE_VERSION_NUMBER} ]]; then
+    echo "--- Excluding RELEASE_VERSION ${RELEASE_VERSION} ---"
     continue;
   fi
 
-  if [[ ${MAX_VERSION_NUMBER} != 0 && ${MAX_VERSION_NUMBER} < ${ABI_VERSION_NUMBER} ]]; then
-    echo "--- Excluding ABI_VERSION ${ABI_VERSION} ---"
+  if [[ ${MAX_VERSION_NUMBER} != 0 && ${MAX_VERSION_NUMBER} < ${RELEASE_VERSION_NUMBER} ]]; then
+    echo "--- Excluding RELEASE_VERSION ${RELEASE_VERSION} ---"
     continue;
   fi
 
-  echo "--- Processing ABI_VERSION ${ABI_VERSION} ---"
-  scripts/dump-abi-ver.sh -c ${CXX} -n ${CXX_NAME} -t ${TEST} -v ${ABI_VERSION}
+  echo "--- Processing ABI_VERSION ${ABI_VERSION} RELEASE_VERSION ${RELEASE_VERSION} ---"
+  scripts/dump-abi-ver.sh -c ${CXX} -n ${CXX_NAME} -t ${TEST} -a ${ABI_VERSION} -v ${RELEASE_VERSION}
 done < src/ABI_VERSIONS
 

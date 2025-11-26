@@ -9,3 +9,4 @@
 abi_check_baggage
 abi_check_trace
 abi_check_metric
+abi_check_context
