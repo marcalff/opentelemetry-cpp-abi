@@ -67,3 +67,21 @@
 [submodule "api/v1.18.0/opentelemetry-cpp"]
 	path = api/v1.18.0/opentelemetry-cpp
 	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.19.0/opentelemetry-cpp"]
+	path = api/v1.19.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.20.0/opentelemetry-cpp"]
+	path = api/v1.20.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.21.0/opentelemetry-cpp"]
+	path = api/v1.21.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.22.0/opentelemetry-cpp"]
+	path = api/v1.22.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.23.0/opentelemetry-cpp"]
+	path = api/v1.23.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.24.0/opentelemetry-cpp"]
+	path = api/v1.24.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git

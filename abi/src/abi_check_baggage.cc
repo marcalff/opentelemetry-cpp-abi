@@ -13,7 +13,6 @@
 #include "opentelemetry/common/spin_lock_mutex.h"
 #include "opentelemetry/common/string_util.h"
 #include "opentelemetry/common/timestamp.h"
-#include "opentelemetry/config.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/context/context_value.h"
 #include "opentelemetry/context/propagation/composite_propagator.h"
@@ -30,6 +29,13 @@
 #include "opentelemetry/nostd/utility.h"
 #include "opentelemetry/nostd/variant.h"
 #include "opentelemetry/version.h"
+
+#if OPENTELEMETRY_VERSION_MAJOR == 1
+#if OPENTELEMETRY_VERSION_MINOR <= 20
+// Deprecated in 1.21.0
+#include "opentelemetry/config.h"
+#endif
+#endif
 
 class AbiTextMapCarrier
     : public opentelemetry::context::propagation::TextMapCarrier {
