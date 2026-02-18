@@ -8,6 +8,7 @@
 function usage {
   echo "Usage: $(basename $0) " 2>&1
   echo '   -n c++ compiler name (gcc12)'
+  echo '   -a ABI version (abiv1)'
   echo '   -v opentelemetry-cpp version (v1.2.3 or main)'
   exit 1
 }

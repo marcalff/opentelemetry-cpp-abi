@@ -29,7 +29,8 @@ Written by Andrey Ponomarenko.
 Install a GCC C++ compiler, for example
 
 ```shell
-CXX=/path/to/g++-12
+which g++-15
+/home/linuxbrew/.linuxbrew/bin/g++-15
 ```
 
 ## Getting Started
@@ -48,11 +49,40 @@ cd abi
 ./scripts/dump-all.sh
 ```
 
+or, with explicit parameters
+
+```shell
+./scripts/dump-all.sh -c g++-15 -n g++-15
+```
+
+
+Then,
+
 ```shell
 ./scripts/check-abi.sh
 ```
 
+or
+
+```shell
+./scripts/check-abi.sh -n g++-15 -a abiv1
+```
+
+or
+
+```shell
+./scripts/check-abi.sh -n g++-15 -a abiv2
+```
+
 Then inspect reports under `abi/compat_reports/`.
+
+Tip to quickly inspect the results:
+
+```shell
+grep -R -l "verdict:incompatible" *
+grep -R -l "verdict:compatible" *
+```
+
 
 ## Adding new ABI tests
 
