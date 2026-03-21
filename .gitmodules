@@ -88,3 +88,6 @@
 [submodule "api/v1.25.0/opentelemetry-cpp"]
 	path = api/v1.25.0/opentelemetry-cpp
 	url = git@github.com:open-telemetry/opentelemetry-cpp.git
+[submodule "api/v1.26.0/opentelemetry-cpp"]
+	path = api/v1.26.0/opentelemetry-cpp
+	url = git@github.com:open-telemetry/opentelemetry-cpp.git
